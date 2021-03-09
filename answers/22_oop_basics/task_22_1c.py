@@ -53,7 +53,7 @@ class Topology:
         elif self.topology.get(to_port) == from_port:
             del self.topology[to_port]
         else:
-            print("Такого соединения нет")
+            print("There is no such link")
 
     def delete_node(self, node):
         original_size = len(self.topology)
@@ -61,5 +61,5 @@ class Topology:
             if node in src or node in dest:
                 del self.topology[src]
         if original_size == len(self.topology):
-            print("Такого устройства нет")
+            print("There is no such device")
 

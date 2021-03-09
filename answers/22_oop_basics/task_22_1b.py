@@ -70,4 +70,4 @@ class Topology:
         elif self.topology.get(to_port) == from_port:
             del self.topology[to_port]
         else:
-            print("Такого соединения нет")
+            print("There is no such link")

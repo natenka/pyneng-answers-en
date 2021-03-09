@@ -24,19 +24,10 @@ In [3]: r1 = CiscoTelnet(**r1_params)
 Using the send_config_commands method:
 
 In [5]: r1.send_config_commands('logging 10.1.1.1')
-Out[5]: 'conf t
-Enter configuration commands, one per line.  End with CNTL/Z.
-R1(config)#logging 10.1.1.1
-R1(config)#end
-R1#'
+Out[5]: 'conf t\r\nEnter configuration commands, one per line.  End with CNTL/Z.\r\nR1(config)#logging 10.1.1.1\r\nR1(config)#end\r\nR1#'
 
 In [6]: r1.send_config_commands(['interface loop55', 'ip address 5.5.5.5 255.255.255.255'])
-Out[6]: 'conf t
-Enter configuration commands, one per line.  End with CNTL/Z.
-R1(config)#interface loop55
-R1(config-if)#ip address 5.5.5.5 255.255.255.255
-R1(config-if)#end
-R1#'
+Out[6]: 'conf t\r\nEnter configuration commands, one per line.  End with CNTL/Z.\r\nR1(config)#interface loop55\r\nR1(config-if)#ip address 5.5.5.5 255.255.255.255\r\nR1(config-if)#end\r\nR1#'
 
 """
 import time

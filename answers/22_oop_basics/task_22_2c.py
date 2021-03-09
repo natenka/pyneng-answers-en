@@ -103,8 +103,8 @@ class CiscoTelnet:
     def _error_in_command(self, command, result, strict):
         regex = "% (?P<err>.+)"
         template = (
-            'При выполнении команды "{cmd}" на устройстве {device} '
-            "возникла ошибка -> {error}"
+            'When executing the command "{cmd}" on device {device}, '
+            'an error occurred -> {error}'
         )
         error_in_cmd = re.search(regex, result)
         if error_in_cmd:

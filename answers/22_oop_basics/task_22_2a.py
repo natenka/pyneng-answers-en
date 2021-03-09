@@ -42,12 +42,9 @@ Out[4]:
   'protocol': 'up'}]
 
 In [5]: r1.send_show_command("sh ip int br", parse=False)
-Out[5]: 'sh ip int br
-Interface                  IP-Address      OK? Method Status
-Protocol
-Ethernet0/0                192.168.100.1   YES NVRAM  up
-up      
-Ethernet0/1                192.168.200.1   YES NVRAM  up...'
+Out[5]: 'sh ip int br\r\nInterface                  IP-Address      OK? Method Status
+Protocol\r\nEthernet0/0                192.168.100.1   YES NVRAM  up
+up      \r\nEthernet0/1                192.168.200.1   YES NVRAM  up...'
 
 
 """
