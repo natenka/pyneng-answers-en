@@ -47,7 +47,7 @@ if __name__ == "__main__":
         )
         pprint(result, width=120)
 
-# Второй вариант без использования use_textfsm в netmiko
+# Second version without using use_textfsm in netmiko
 from task_21_3 import parse_command_dynamic
 
 

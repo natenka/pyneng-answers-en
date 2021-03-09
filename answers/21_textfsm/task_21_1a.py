@@ -35,7 +35,7 @@ if __name__ == "__main__":
     pprint(result, width=100)
 
 
-# вариант с ParseTextToDicts
+# ParseTextToDicts version
 def parse_output_to_dict(template, command_output):
     with open(template) as template:
         fsm = textfsm.TextFSM(template)
