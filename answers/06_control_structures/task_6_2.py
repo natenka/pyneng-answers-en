@@ -13,7 +13,7 @@ Depending on the type of address (described below), print to the stdout:
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 """
 
-ip_address = input("введите ip-адрес: ")
+ip_address = input("Enter IP address: ")
 oct1 = int(ip_address.split(".")[0])
 
 if ip_address == "255.255.255.255":

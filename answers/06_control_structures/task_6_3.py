@@ -75,7 +75,7 @@ for intf, value in trunk.items():
             print(f" {command}")
 
 
-# этот вариант использует словарь, вместо if/else
+# version with dict
 trunk_actions = {"add": " add", "del": " remove", "only": ""}
 
 for intf, value in trunk.items():
@@ -89,7 +89,7 @@ for intf, value in trunk.items():
         else:
             print(f" {command}")
 
-# вариант с заменой
+# version with replace
 for intf, allowed in trunk.items():
     action = (
         allowed[0].replace("only", "").replace("del", " remove").replace("add", " add")
