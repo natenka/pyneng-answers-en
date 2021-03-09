@@ -78,7 +78,7 @@ optional arguments:
   -h, --help    show this help message and exit
   --db DB_FILE  имя БД
   -s            если флаг установлен, добавлять данные коммутаторов, иначе -
-                DHCP записи
+                DHCP entries
 
 
 $ python parse_dhcp_snooping.py add -h
@@ -92,7 +92,7 @@ optional arguments:
   -h, --help    show this help message and exit
   --db DB_FILE  имя БД
   -s            если флаг установлен, добавлять данные коммутаторов, иначе
-                добавлять DHCP записи
+                добавлять DHCP entries
 
 
 $ python parse_dhcp_snooping.py get -h
@@ -111,7 +111,7 @@ optional arguments:
 
 $ python parse_dhcp_snooping.py create_db
 Создаю БД dhcp_snooping.db со схемой dhcp_snooping_schema.sql
-Создаю базу данных...
+Database creation...
 
 
 $ python parse_dhcp_snooping.py add sw[1-3]_dhcp_snooping.txt
@@ -125,9 +125,9 @@ $ python parse_dhcp_snooping.py add -s switches.yml
 Добавляю данные о коммутаторах
 
 $ python parse_dhcp_snooping.py get
-В таблице dhcp такие записи:
+The dhcp table has the following entries:
 
-Активные записи:
+Active entries:
 
 -----------------  ---------------  --  ----------------  ---  -  -------------------
 00:09:BB:3D:D6:58  10.1.10.2        10  FastEthernet0/1   sw1  1  2019-03-08 16:47:52
@@ -145,9 +145,9 @@ $ python parse_dhcp_snooping.py get
 
 $ python parse_dhcp_snooping.py get -k vlan -v 10
 Данные из БД: dhcp_snooping.db
-Информация об устройствах с такими параметрами: vlan 10
+Information about devices with the following parameters: vlan 10
 
-Активные записи:
+Active entries:
 
 -----------------  ----------  --  ---------------  ---  -  -------------------
 00:09:BB:3D:D6:58  10.1.10.2   10  FastEthernet0/1  sw1  1  2019-03-08 16:47:52

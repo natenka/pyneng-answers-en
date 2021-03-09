@@ -8,7 +8,7 @@ def print_data_in_rows(data, active=True):
     data = list(data)
     if data:
         print(
-            "\n{active} записи:\n".format(active="Активные" if active else "Неактивные")
+            "\n{active} entries:\n".format(active="Active" if active else "Inactive")
         )
         print(tabulate(data))
 
@@ -16,13 +16,13 @@ def print_data_in_rows(data, active=True):
 def get_data_by_key_value(db_name, key, value):
     keys = "mac ip vlan interface switch".split()
     if key not in keys:
-        print("Данный параметр не поддерживается.")
-        print("Допустимые значения параметров: {}".format(", ".join(keys)))
+        print("This parameter is not supported.")
+        print("Valid parameter values: {}".format(", ".join(keys)))
         return
     conn = sqlite3.connect(db_filename)
     query = "select * from dhcp where {} = ? and active = ?".format(key)
 
-    print("\nИнформация об устройствах с такими параметрами:", key, value)
+    print("\nInformation about devices with the following parameters:", key, value)
     for active in (1, 0):
         result = conn.execute(query, (value, active))
         print_data_in_rows(result, active)
@@ -30,7 +30,7 @@ def get_data_by_key_value(db_name, key, value):
 
 
 def get_all_data(db_name):
-    print("В таблице dhcp такие записи:")
+    print("The dhcp table has the following entries:")
     query = "select * from dhcp where active = ?"
     conn = sqlite3.connect(db_name)
     for active in (1, 0):
@@ -46,7 +46,7 @@ def parse_args(db_name, args):
         key, value = args
         get_data_by_key_value(db_filename, key, value)
     else:
-        print("Пожалуйста, введите два или ноль аргументов")
+        print("Please enter two or zero arguments")
 
 
 if __name__ == "__main__":

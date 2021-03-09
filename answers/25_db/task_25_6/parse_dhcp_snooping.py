@@ -27,14 +27,14 @@ def add(args):
 def get(args):
     if args.key and args.value:
         print('Данные из БД: {}'.format(args.db_file))
-        print('Информация об устройствах с такими параметрами:',
+        print('Information about devices with the following parameters:',
               args.key, args.value)
         pds.get_data(args.db_file, args.key, args.value)
     elif args.key or args.value:
-        print('Пожалуйста, введите два или ноль аргументов\n')
+        print('Please enter two or zero arguments\n')
         print(show_subparser_help('get'))
     else:
-        print('В таблице dhcp такие записи:')
+        print('The dhcp table has the following entries:')
         pds.get_all_data(args.db_file)
 
 
@@ -68,7 +68,7 @@ add_parser.add_argument('--db', dest='db_file', default=DFLT_DB_NAME,
                         help='имя БД')
 add_parser.add_argument('-s', dest='sw_true', action='store_true',
                         help=('если флаг установлен, добавлять '
-                              'данные коммутаторов, иначе добавлять DHCP записи'))
+                              'данные коммутаторов, иначе добавлять DHCP entries'))
 add_parser.set_defaults(func=add)
 
 get_parser = subparsers.add_parser('get', help='отобразить данные из БД')

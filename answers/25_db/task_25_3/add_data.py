@@ -20,7 +20,7 @@ def add_data(connection, query, data):
             with connection:
                 connection.execute(query, row)
         except sqlite3.IntegrityError as err:
-            print("При добавлении данных:", row, "Возникла ошибка:", err)
+            print("While adding data:", row, "An error occurred:", err)
 
 
 def add_sw_data(db_name, sw_data_file):
@@ -54,4 +54,4 @@ if __name__ == "__main__":
         add_sw_data(db_filename, "switches.yml")
         add_dhcp_data(db_filename, dhcp_snoop_files)
     else:
-        print("База данных не существует. Для добавления данных, ее надо создать")
+        print("The database does not exist. Before adding data, you need to create it")

@@ -5,9 +5,9 @@ import sqlite3
 def create_db(db_name, schema):
     db_exists = os.path.exists(db_name)
     if db_exists:
-        print("База данных существует")
+        print("Database exists")
         return
-    print("Создаю базу данных...")
+    print("Database creation...")
     with open(schema, "r") as f:
         schema_f = f.read()
         connection = sqlite3.connect(db_name)

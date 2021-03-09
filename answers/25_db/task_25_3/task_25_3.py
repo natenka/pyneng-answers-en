@@ -11,19 +11,19 @@
 Должен быть такой вывод:
 $ python add_data.py
 Добавляю данные в таблицу switches...
-При добавлении данных: ('sw1', 'London, 21 New Globe Walk') Возникла ошибка: UNIQUE constraint failed: switches.hostname
-При добавлении данных: ('sw2', 'London, 21 New Globe Walk') Возникла ошибка: UNIQUE constraint failed: switches.hostname
-При добавлении данных: ('sw3', 'London, 21 New Globe Walk') Возникла ошибка: UNIQUE constraint failed: switches.hostname
+While adding data: ('sw1', 'London, 21 New Globe Walk') An error occurred: UNIQUE constraint failed: switches.hostname
+While adding data: ('sw2', 'London, 21 New Globe Walk') An error occurred: UNIQUE constraint failed: switches.hostname
+While adding data: ('sw3', 'London, 21 New Globe Walk') An error occurred: UNIQUE constraint failed: switches.hostname
 Добавляю данные в таблицу dhcp...
-При добавлении данных: ('00:09:BB:3D:D6:58', '10.1.10.2', '10', 'FastEthernet0/1', 'sw1') Возникла ошибка: UNIQUE constraint failed: dhcp.mac
-При добавлении данных: ('00:04:A3:3E:5B:69', '10.1.5.2', '5', 'FastEthernet0/10', 'sw1') Возникла ошибка: UNIQUE constraint failed: dhcp.mac
-При добавлении данных: ('00:05:B3:7E:9B:60', '10.1.5.4', '5', 'FastEthernet0/9', 'sw1') Возникла ошибка: UNIQUE constraint failed: dhcp.mac
-При добавлении данных: ('00:07:BC:3F:A6:50', '10.1.10.6', '10', 'FastEthernet0/3', 'sw1') Возникла ошибка: UNIQUE constraint failed: dhcp.mac
-При добавлении данных: ('00:09:BC:3F:A6:50', '192.168.100.100', '1', 'FastEthernet0/7', 'sw1') Возникла ошибка: UNIQUE constraint failed: dhcp.mac
+While adding data: ('00:09:BB:3D:D6:58', '10.1.10.2', '10', 'FastEthernet0/1', 'sw1') An error occurred: UNIQUE constraint failed: dhcp.mac
+While adding data: ('00:04:A3:3E:5B:69', '10.1.5.2', '5', 'FastEthernet0/10', 'sw1') An error occurred: UNIQUE constraint failed: dhcp.mac
+While adding data: ('00:05:B3:7E:9B:60', '10.1.5.4', '5', 'FastEthernet0/9', 'sw1') An error occurred: UNIQUE constraint failed: dhcp.mac
+While adding data: ('00:07:BC:3F:A6:50', '10.1.10.6', '10', 'FastEthernet0/3', 'sw1') An error occurred: UNIQUE constraint failed: dhcp.mac
+While adding data: ('00:09:BC:3F:A6:50', '192.168.100.100', '1', 'FastEthernet0/7', 'sw1') An error occurred: UNIQUE constraint failed: dhcp.mac
 ... (вывод сокращен)
 
 При создании схемы БД, было явно указано, что поле MAC-адрес, должно быть уникальным.
-Поэтому, при добавлении записи с таким же MAC-адресом, возникает исключение (ошибка).
+Поэтому, при добавлении entries с таким же MAC-адресом, возникает исключение (ошибка).
 В задании 25.1 исключение обрабатывается и выводится сообщение на стандартный поток вывода.
 
 В этом задании считается, что информация периодически считывается с коммутаторов и записывается в файлы.
@@ -38,13 +38,13 @@ $ python add_data.py
 * 1 - True. Используется чтобы указать, что запись активна
 
 Каждый раз, когда информация из файлов с выводом DHCP snooping добавляется заново,
-надо пометить все существующие записи (для данного коммутатора), как неактивные (active = 0).
-Затем можно обновлять информацию и пометить новые записи, как активные (active = 1).
+надо пометить все существующие entries (для данного коммутатора), как неактивные (active = 0).
+Затем можно обновлять информацию и пометить новые entries, как активные (active = 1).
 
-Таким образом, в БД останутся и старые записи, для MAC-адресов, которые сейчас не активны,
+Таким образом, в БД останутся и старые entries, для MAC-адресов, которые сейчас не активны,
 и появится обновленная информация для активных адресов.
 
-Например, в таблице dhcp такие записи:
+Например, в таблице dhcp такие entries:
 mac                ip          vlan        interface         switch      active
 -----------------  ----------  ----------  ----------------  ----------  ----------
 00:09:BB:3D:D6:58  10.1.10.2   10          FastEthernet0/1   sw1         1

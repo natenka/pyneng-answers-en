@@ -7,20 +7,20 @@ from tabulate import tabulate
 def get_data_by_key_value(db_name, key, value):
     keys = "mac ip vlan interface switch".split()
     if key not in keys:
-        print("Данный параметр не поддерживается.")
-        print("Допустимые значения параметров: {}".format(", ".join(keys)))
+        print("This parameter is not supported.")
+        print("Valid parameter values: {}".format(", ".join(keys)))
         return
     connection = sqlite3.connect(db_filename)
 
     query = "select * from dhcp where {} = ?".format(key)
     result = connection.execute(query, (value,))
 
-    print("\nИнформация об устройствах с такими параметрами:", key, value)
+    print("\nInformation about devices with the following parameters:", key, value)
     print(tabulate(result))
 
 
 def get_all_data(db_name):
-    print("В таблице dhcp такие записи:")
+    print("The dhcp table has the following entries:")
     connection = sqlite3.connect(db_filename)
     print(tabulate(connection.execute("select * from dhcp")))
 
@@ -32,7 +32,7 @@ def parse_args(db_name, args):
         key, value = args
         get_data_by_key_value(db_filename, key, value)
     else:
-        print("Пожалуйста, введите два или ноль аргументов")
+        print("Please enter two or zero arguments")
 
 
 if __name__ == "__main__":

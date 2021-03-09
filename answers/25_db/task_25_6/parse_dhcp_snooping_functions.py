@@ -13,7 +13,7 @@ def print_data_in_rows(data, active=True):
     data = list(data)
     if data:
         print(
-            "\n{active} записи:\n".format(active="Активные" if active else "Неактивные")
+            "\n{active} entries:\n".format(active="Active" if active else "Inactive")
         )
         print(tabulate(data))
 
@@ -32,7 +32,7 @@ def add_data_to_db(connection, query, data):
             with connection:
                 connection.execute(query, row)
         except sqlite3.IntegrityError as err:
-            print("При добавлении данных:", row, "Возникла ошибка:", err)
+            print("While adding data:", row, "An error occurred:", err)
 
 
 def get_db_column_names(db_filename):
@@ -47,10 +47,10 @@ def get_db_column_names(db_filename):
 
 def create_db(db_filename, schema_file):
     if os.path.exists(db_filename):
-        print("База данных существует")
+        print("Database exists")
         return
     conn = sqlite3.connect(db_filename)
-    print("Создаю базу данных...")
+    print("Database creation...")
     with open(schema_file) as f:
         schema = f.read()
     conn.executescript(schema)
@@ -58,7 +58,7 @@ def create_db(db_filename, schema_file):
 
 def add_data_switches(db_filename, sw_info_files):
     if not os.path.exists(db_filename):
-        print("База данных не существует. Перед добавлением данных, ее надо создать")
+        print("The database does not exist. Before adding data, you need to create it")
         return
 
     conn = sqlite3.connect(db_filename)
@@ -81,7 +81,7 @@ def remove_old_records(conn):
 
 def add_data(db_filename, data_files):
     if not os.path.exists(db_filename):
-        print("База данных не существует. Перед добавлением данных, ее надо создать")
+        print("The database does not exist. Before adding data, you need to create it")
         return
     conn = sqlite3.connect(db_filename)
     remove_old_records(conn)
@@ -100,8 +100,8 @@ def add_data(db_filename, data_files):
 def get_data(db_filename, key, value):
     keys = "mac ip vlan interface switch".split()
     if key not in keys:
-        print("Данный параметр не поддерживается.")
-        print("Допустимые значения параметров: {}".format(", ".join(keys)))
+        print("This parameter is not supported.")
+        print("Valid parameter values: {}".format(", ".join(keys)))
         return
     conn = sqlite3.connect(db_filename)
     query = "select * from dhcp where {} = ? and active = ?".format(key)

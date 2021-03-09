@@ -22,16 +22,16 @@ def add_data(db, query, data):
             with connection:
                 connection.execute(query, row)
         except sqlite3.IntegrityError as err:
-            print("При добавлении данных:", row, "Возникла ошибка:", err)
+            print("While adding data:", row, "An error occurred:", err)
     connection.close()
 
 
 def add_sw_data(db_name, sw_data_file):
     db_exists = os.path.exists(db_name)
     if not db_exists:
-        print("База данных не существует. Перед добавлением данных, ее надо создать")
+        print("The database does not exist. Before adding data, you need to create it")
         return
-    print("Добавляю данные в таблицу switches...")
+    print("Adding data to the switches table...")
     query_switches = "insert into switches values (?,?)"
     with open(sw_data_file) as f:
         switches = yaml.safe_load(f)
@@ -42,9 +42,9 @@ def add_sw_data(db_name, sw_data_file):
 def add_dhcp_data(db_name, data_files):
     db_exists = os.path.exists(db_name)
     if not db_exists:
-        print("База данных не существует. Перед добавлением данных, ее надо создать")
+        print("The database does not exist. Before adding data, you need to create it")
         return
-    print("Добавляю данные в таблицу dhcp...")
+    print("Adding data to dhcp table...")
     query = "insert into dhcp values (?, ?, ?, ?, ?)"
     result = []
     for filename in data_files:
