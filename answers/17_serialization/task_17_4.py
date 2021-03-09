@@ -47,14 +47,14 @@ import datetime
 
 def convert_str_to_datetime(datetime_str):
     """
-    Конвертирует строку с датой в формате 11/10/2019 14:05 в объект datetime.
+    Converts a date string formatted as 11/10/2019 14:05 to a datetime object.
     """
     return datetime.datetime.strptime(datetime_str, "%d/%m/%Y %H:%M")
 
 
 def convert_datetime_to_str(datetime_obj):
     """
-    Конвертирует строку с датой в формате 11/10/2019 14:05 в объект datetime.
+    Converts a datetime object to a date string in the format 11/10/2019 14:05.
     """
     return datetime.datetime.strftime(datetime_obj, "%d/%m/%Y %H:%M")
 
