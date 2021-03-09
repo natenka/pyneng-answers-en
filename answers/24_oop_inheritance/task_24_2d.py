@@ -17,22 +17,10 @@ In [2]: from task_24_2d import MyNetmiko
 In [3]: r1 = MyNetmiko(**device_params)
 
 In [6]: r1.send_config_set('lo')
-Out[6]: 'config term
-Enter configuration commands, one per line.  End with CNTL/Z.
-R1(config)#lo
-% Incomplete command.
-
-R1(config)#end
-R1#'
+Out[6]: 'config term\nEnter configuration commands, one per line.  End with CNTL/Z.\nR1(config)#lo\n% Incomplete command.\n\nR1(config)#end\nR1#'
 
 In [7]: r1.send_config_set('lo', ignore_errors=True)
-Out[7]: 'config term
-Enter configuration commands, one per line.  End with CNTL/Z.
-R1(config)#lo
-% Incomplete command.
-
-R1(config)#end
-R1#'
+Out[7]: 'config term\nEnter configuration commands, one per line.  End with CNTL/Z.\nR1(config)#lo\n% Incomplete command.\n\nR1(config)#end\nR1#'
 
 In [8]: r1.send_config_set('lo', ignore_errors=False)
 ---------------------------------------------------------------------------
@@ -56,8 +44,7 @@ class MyNetmiko(CiscoIosSSH):
     def _check_error_in_command(self, command, result):
         regex = "^.+\n(.*\n)*% (?P<err>.+)"
         message = (
-            'При выполнении команды "{cmd}" на устройстве {device} '
-            'возникла ошибка "{error}"'
+            'The "{}" command was executed with the error "{}" on the device {}'
         )
         error_in_cmd = re.search(regex, result)
         if error_in_cmd:

@@ -23,14 +23,7 @@ Enter password: cisco
 Enter enable passwod: cisco
 
 In [4]: r1.send_show_command('sh ip int br')
-Out[4]: 'Interface                  IP-Address      OK? Method Status                Protocol
-Ethernet0/0                192.168.100.1   YES NVRAM  up                    up      
-Ethernet0/1                192.168.200.1   YES NVRAM  up                    up      
-Ethernet0/2                190.16.200.1    YES NVRAM  up                    up      
-Ethernet0/3                192.168.230.1   YES NVRAM  up                    up      
-Ethernet0/3.100            10.100.0.1      YES NVRAM  up                    up      
-Ethernet0/3.200            10.200.0.1      YES NVRAM  up                    up      
-Ethernet0/3.300            10.30.0.1       YES NVRAM  up                    up      '
+Out[4]: 'Interface                  IP-Address      OK? Method Status                Protocol\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \nEthernet0/2                190.16.200.1    YES NVRAM  up                    up      \nEthernet0/3                192.168.230.1   YES NVRAM  up                    up      \nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      '
 
 """
 from base_connect_class import BaseSSH
@@ -39,9 +32,9 @@ from base_connect_class import BaseSSH
 class CiscoSSH(BaseSSH):
     def __init__(self, **device_params):
         params = {
-            "username": "Введите имя пользователя: ",
-            "password": "Введите пароль: ",
-            "secret": "Введите пароль для режима enable: ",
+            "username": "Enter username: ",
+            "password": "Enter password: ",
+            "secret": "Enter enable password: ",
         }
         for param in params:
             if not param in device_params:
