@@ -91,7 +91,7 @@ def unique_network_map(topology_dict):
     return network_map
 
 
-# второй вариант решения
+# second version
 def unique_network_map(topology_dict):
     network_map = {}
     for key, value in topology_dict.items():

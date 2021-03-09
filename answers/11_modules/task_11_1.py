@@ -38,11 +38,11 @@ Restriction: All tasks must be done using the topics covered in this and previou
 
 def parse_cdp_neighbors(command_output):
     """
-    Тут мы передаем вывод команды одной строкой потому что именно в таком виде будет
-    получен вывод команды с оборудования. Принимая как аргумент вывод команды,
-    вместо имени файла, мы делаем функцию более универсальной: она может работать
-    и с файлами и с выводом с оборудования.
-    Плюс учимся работать с таким выводом.
+    Here we pass the output of the command as single string because it is in this form that
+    received command output from equipment. Taking the output of the command as an argument,
+    instead of a filename, we make the function more generic: it can work
+    both with files and with output from equipment.
+    Plus, we learn to work with such a output.
     """
     result = {}
     for line in command_output.split("\n"):
@@ -50,7 +50,7 @@ def parse_cdp_neighbors(command_output):
         columns = line.split()
         if ">" in line:
             hostname = line.split(">")[0]
-        # 3 индекс это столбец holdtime - там всегда число
+        # index 3 is holdtime
         elif len(columns) >= 5 and columns[3].isdigit():
             r_host, l_int, l_int_num, *other, r_int, r_int_num = columns
             result[(hostname, l_int + l_int_num)] = (r_host, r_int + r_int_num)
