@@ -6,11 +6,11 @@ sys.path.append("..")
 
 from pyneng_common_functions import check_class_exists, check_attr_or_method, strip_empty_lines
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_class_created():
@@ -20,11 +20,11 @@ def test_class_created():
 def test_method_enter_exit(first_router_from_devices_yaml):
     assert (
         getattr(task_23_2.CiscoTelnet, "__enter__", None) != None
-    ), "У класса CiscoTelnet должен быть метод __enter__"
+    ), "The CiscoTelnet class must have an __enter__ method"
 
     assert (
         getattr(task_23_2.CiscoTelnet, "__exit__", None) != None
-    ), "У класса CiscoTelnet должен быть метод __exit__"
+    ), "The CiscoTelnet class must have an __exit__ method"
 
     with task_23_2.CiscoTelnet(**first_router_from_devices_yaml) as r1:
         r1.send_show_command("sh clock")

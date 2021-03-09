@@ -7,11 +7,11 @@ sys.path.append("..")
 
 from pyneng_common_functions import check_class_exists, check_attr_or_method
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_class_created():
@@ -20,7 +20,7 @@ def test_class_created():
 
 def test_class_inheritance(first_router_from_devices_yaml):
     r1 = task_24_1.CiscoSSH(**first_router_from_devices_yaml)
-    assert isinstance(r1, BaseSSH), "Класс CiscoSSH должен наследовать BaseSSH"
+    assert isinstance(r1, BaseSSH), "CiscoSSH class must inherit BaseSSH"
     r1.ssh.disconnect()
     check_attr_or_method(r1, method="send_show_command")
     check_attr_or_method(r1, method="send_cfg_commands")
@@ -32,4 +32,4 @@ def test_enable(first_router_from_devices_yaml):
     r1.ssh.disconnect()
     assert (
         "hostname" in output
-    ), "При создании экземпляра класса должно создаваться подключение и переход в режим enable"
+    ), "After creating an instance of the class, a connection must be created"

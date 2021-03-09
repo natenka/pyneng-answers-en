@@ -4,11 +4,11 @@ import sys
 import pytest
 
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def count_calls(func):
@@ -30,12 +30,12 @@ def monkey_input_access(prompt):
     elif monkey_input_access.total_calls == 2:
         return "Gi0/3"
     elif monkey_input_access.total_calls == 3:
-        if "номер vlan" in prompt.lower():
+        if "vlan number" in prompt.lower():
             return "55"
         else:
             pytest.fail(
-                "Для access портов запрос вланов должен быть таким: "
-                "Введите номер VLAN:"
+                "For access ports, the vlan request should be like this:"
+                "Enter VLAN number:"
             )
 
 
@@ -47,18 +47,18 @@ def monkey_input_trunk(prompt):
     elif monkey_input_trunk.total_calls == 2:
         return "Gi0/2"
     elif monkey_input_trunk.total_calls == 3:
-        if "разрешенные vlanы" in prompt.lower():
+        if "allowed vlans" in prompt.lower():
             return "10,11,12"
         else:
             pytest.fail(
-                "Для trunk портов запрос вланов должен быть таким: "
-                "Введите разрешенные VLANы:"
+                "For trunk ports, the vlan request should be like this:"
+                "Enter the allowed VLANs:"
             )
 
 
 def test_task_access(capsys, monkeypatch):
     """
-    Проверка работы задания при вводе access
+    Task check for access
     """
     monkeypatch.setattr("builtins.input", monkey_input_access)
     import task_5_3a
@@ -75,15 +75,15 @@ def test_task_access(capsys, monkeypatch):
 
     assert (
         out
-    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
+    ), "Nothing is printed to stdout. It is necessary not only to get the correct result, but also to print it to the stdout using printprint"
     assert (
         correct_stdout in out.strip()
-    ), "На стандартный поток вывода выводится неправильный вывод"
+    ), "Wrong output is printed to stdout"
 
 
 def test_task_trunk(capsys, monkeypatch):
     """
-    Проверка работы задания при вводе trunk
+    Task check for trunk
     """
     monkeypatch.setattr("builtins.input", monkey_input_trunk)
     if sys.modules.get("task_5_3a"):
@@ -99,7 +99,7 @@ def test_task_trunk(capsys, monkeypatch):
     )
     assert (
         out
-    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
+    ), "Nothing is printed to stdout. It is necessary not only to get the correct result, but also to print it to the stdout using printprint"
     assert (
         correct_stdout in out.strip()
-    ), "На стандартный поток вывода выводится неправильный вывод"
+    ), "Wrong output is printed to stdout"

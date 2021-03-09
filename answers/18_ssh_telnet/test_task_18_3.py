@@ -10,34 +10,30 @@ from pyneng_common_functions import (
     strip_empty_lines,
 )
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_functions_created():
     """
-    Проверка, что функция создана
+    Checking that the function has been created
     """
     check_function_exists(task_18_3, "send_commands")
 
 
 def test_function_params(r1_test_connection, first_router_from_devices_yaml):
-    """
-    Проверка параметров
-    """
     show_command = "sh ip int br"
     cfg_commands = ["logging buffered 20010"]
     with pytest.raises(TypeError) as excinfo:
-        # если аргументы show/config передаются не как ключевые,
-        # должно генерироваться исключение TypeError
+        # if show/config arguments are not passed as keyword arguments,
+        # a TypeError exception should be raised
         task_18_3.send_commands(first_router_from_devices_yaml, show_command)
 
     with pytest.raises(ValueError) as excinfo:
-        # Если передаются оба аргумента и show и config,
-        # должно генерироваться исключение ValueError
+        # If both show and config are passed, a ValueError exception should be raised
         task_18_3.send_commands(
             first_router_from_devices_yaml, show=show_command, config=cfg_commands
         )
@@ -45,7 +41,7 @@ def test_function_params(r1_test_connection, first_router_from_devices_yaml):
 
 def test_function_return_value(r1_test_connection, first_router_from_devices_yaml):
     """
-    Проверка работы функции
+    Function check
     """
     show_command = "sh ip int br"
     cfg_commands = [
@@ -61,13 +57,13 @@ def test_function_return_value(r1_test_connection, first_router_from_devices_yam
     return_value_cfg = task_18_3.send_commands(
         first_router_from_devices_yaml, config=cfg_commands
     )
-    assert return_value_show != None, "Функция ничего не возвращает"
+    assert return_value_show != None, "The function returns None"
     assert (
         type(return_value_show) == str
-    ), f"По заданию функция должна возвращать строку, а возвращает {type(return_value).__name__}"
+    ), f"The function must return string, and it returns a {type(return_value).__name__}"
     assert strip_empty_lines(correct_return_value_show) == strip_empty_lines(
         return_value_show
-    ), "Функция возвращает неправильное значение при передаче команды show"
+    ), "Function returns wrong value for show command"
     assert strip_empty_lines(correct_return_value_cfg) == strip_empty_lines(
         return_value_cfg
-    ), "Функция возвращает неправильное значение при передаче конфигурационных команд"
+    ), "Function returns wrong value config commands"

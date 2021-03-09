@@ -8,11 +8,11 @@ sys.path.append("..")
 
 from pyneng_common_functions import check_class_exists, check_attr_or_method
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_class_created():
@@ -21,7 +21,7 @@ def test_class_created():
 
 def test_class_inheritance(first_router_from_devices_yaml):
     r1 = task_24_2d.MyNetmiko(**first_router_from_devices_yaml)
-    assert isinstance(r1, CiscoIosSSH), "Класс MyNetmiko должен наследовать CiscoIosSSH"
+    assert isinstance(r1, CiscoIosSSH), "MyNetmiko class must inherit from CiscoIosSSH"
     check_attr_or_method(r1, method="send_config_set")
     r1.disconnect()
 
@@ -41,7 +41,7 @@ def test_errors_ignore_false(first_router_from_devices_yaml, command, error):
         r1.disconnect()
     assert error in str(
         excinfo
-    ), "Метод send_config_commands должен генерировать исключение, когда ignore_errors=False"
+    ), "send_config_commands method should throw an exception when ignore_errors=False"
 
 
 @pytest.mark.parametrize(
@@ -58,4 +58,4 @@ def test_errors_ignore_true(first_router_from_devices_yaml, command, error):
     r1.disconnect()
     assert (
         error in return_value
-    ), "Метод send_config_commands должен возвращать вывод с ошибкой, когда ignore_errors=True"
+    ), "send_config_commands method should print error output when ignore_errors=True"

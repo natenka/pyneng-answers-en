@@ -1,17 +1,14 @@
 from functools import wraps
 import pytest
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_task(monkeypatch, tmpdir):
-    """
-    Проверка работы задания при вводе access
-    """
     dest_filename = tmpdir.mkdir("test_tasks").join("task_7_2b.txt")
 
     monkeypatch.setattr("sys.argv", ["task_7_2b.py", "config_sw1.txt", dest_filename])
@@ -55,5 +52,5 @@ def test_task(monkeypatch, tmpdir):
 
     assert (
         dest_file_content == correct_file_content
-    ), "На стандартный поток вывода выводится неправильный вывод"
+    ), "Wrong output is printed to stdout"
 

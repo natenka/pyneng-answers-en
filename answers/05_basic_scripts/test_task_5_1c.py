@@ -4,11 +4,11 @@ import sys
 import pytest
 
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def count_calls(func):
@@ -37,12 +37,12 @@ def monkey_input_sw1(prompt):
     if monkey_input_sw1.total_calls == 1:
         return "sw1"
     elif monkey_input_sw1.total_calls == 2:
-        return "произвольная строка"
+        return "some string"
 
 
 def test_task_r2_correct_param(capsys, monkeypatch):
     """
-    Проверка работы задания при вводе r2
+    Task check for r2
     """
     monkeypatch.setattr("builtins.input", monkey_input_r2)
     import task_5_1c
@@ -52,15 +52,15 @@ def test_task_r2_correct_param(capsys, monkeypatch):
 
     assert (
         out
-    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
+    ), "Nothing is printed to stdout. It is necessary not only to get the correct result, but also to print it to the stdout using printprint"
     assert (
         correct_stdout in out.strip()
-    ), "На стандартный поток вывода выводится неправильный вывод"
+    ), "Wrong output is printed to stdout"
 
 
 def test_task_sw1_wrong_param(capsys, monkeypatch):
     """
-    Проверка работы задания при вводе sw1
+    Task check for sw1
     """
     monkeypatch.setattr("builtins.input", monkey_input_sw1)
     if sys.modules.get("task_5_1c"):
@@ -69,16 +69,16 @@ def test_task_sw1_wrong_param(capsys, monkeypatch):
         import task_5_1c
     except KeyError:
         pytest.fail(
-            "В этом задании должна обрабатываться ситуация, "
-            "когда параметр указан неправильный. Не должна возникать ошибка KeyError"
+            "This task should handle a situation where the parameter is incorrect. "
+            "No KeyError should be raised"
         )
 
 
     out, err = capsys.readouterr()
-    correct_stdout = "параметра нет"
+    correct_stdout = "no such parameter"
     assert (
         out
-    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
+    ), "Nothing is printed to stdout. It is necessary not only to get the correct result, but also to print it to the stdout using printprint"
     assert (
         correct_stdout in out.strip()
-    ), "На стандартный поток вывода выводится неправильный вывод"
+    ), "Wrong output is printed to stdout"

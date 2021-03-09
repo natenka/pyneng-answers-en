@@ -1,16 +1,16 @@
 import pytest
 
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_task_stdout(capsys):
     """
-    Проверка работы задания
+    Task check
     """
     import task_4_5
 
@@ -18,29 +18,29 @@ def test_task_stdout(capsys):
     correct_stdout = "['1', '3', '8']"
     assert (
         out
-    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
+    ), "Nothing is printed to stdout. It is necessary not only to get the correct result, but also to print it to the stdout using printprint"
     assert (
         out.strip() == correct_stdout
-    ), "На стандартный поток вывода выводится неправильная строка"
+    ), "Wrong line is printed to stdout"
 
 
 def test_task_variables():
     """
-    Проверка что в задании создана нужная переменная
-    и в ней содержится правильный результат
+    Checking that the required variable has been created
+    in the task and contains the correct result
     """
     import task_4_5
 
-    # переменные созданные в задании:
+    # variables created in the task:
     task_vars = [var for var in dir(task_4_5) if not var.startswith("_")]
 
     correct_result = ["1", "3", "8"]
     assert (
         "result" in task_vars
-    ), "Итоговый список должен быть записан в переменную result"
+    ), "List should be written to the result variable"
     assert (
         type(task_4_5.result) == list
-    ), f"По заданию в переменной result должен быть список, а в ней {type(task_4_5.result).__name__}"
+    ), f"The result variable must contain a list, not a {type(task_4_5.result).__name__}"
     assert (
         task_4_5.result == correct_result
-    ), f"В переменной result должен быть список {correct_result}"
+    ), f"The result variable must be a list {correct_result}"

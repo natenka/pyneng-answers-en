@@ -7,17 +7,17 @@ sys.path.append("..")
 
 from pyneng_common_functions import check_function_exists, strip_empty_lines
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_templates_exists():
     assert os.path.exists(
         "templates/ospf.txt"
-    ), "Шаблон templates/ospf.txt не существует"
+    ), "Template templates/ospf.txt does not exist"
 
 
 def test_function_return_value():
@@ -63,11 +63,9 @@ def test_function_return_value():
     return_value = strip_empty_lines(return_value)
     return_lines = set(return_value.splitlines())
 
-    # проверяем что строки из correct_return_value_router содержатся в return_value
     assert correct_lines_router.issubset(
         return_lines
-    ), "В итоговой конфигурации режима router ospf не все строки"
-    # проверяем что строки из correct_return_value_intf содержатся в return_value
+    ), "Not all lines are present in the router ospf configuration"
     assert correct_lines_interface.issubset(
         return_lines
-    ), "В итоговой конфигурации интерфейсов не все строки"
+    ), "Not all lines are present in the final interface configuration"

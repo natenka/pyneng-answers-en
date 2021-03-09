@@ -6,23 +6,23 @@ sys.path.append("..")
 
 from pyneng_common_functions import check_function_exists, check_function_params
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_function_created():
     """
-    Проверка, что функция создана
+    Checking that the function has been created
     """
     check_function_exists(task_9_2, "generate_trunk_config")
 
 
 def test_function_params():
     """
-    Проверка имен и количества параметров
+    Checking names and number of parameters
     """
     check_function_params(
         function=task_9_2.generate_trunk_config,
@@ -33,7 +33,7 @@ def test_function_params():
 
 def test_function_return_value():
     """
-    Проверка работы функции
+    Function check
     """
     trunk_vlans_mapping = {
         "FastEthernet0/1": [10, 20, 30],
@@ -63,18 +63,18 @@ def test_function_return_value():
     return_value = task_9_2.generate_trunk_config(
         trunk_vlans_mapping, template_trunk_mode
     )
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value != None, "The function returns None"
     assert (
         type(return_value) == list
-    ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
+    ), f"The function should return a list, instead it returns a {type(return_value).__name__}"
     assert (
         return_value == correct_return_value
-    ), "Функция возвращает неправильное значение"
+    ), "Function returns wrong value"
 
 
 def test_function_return_value_different_args():
     """
-    Проверка работы функции с другими аргументами
+    Checking the function with different arguments
     """
     trunk_vlans_mapping = {
         "FastEthernet0/11": [101, 120, 130],
@@ -96,10 +96,10 @@ def test_function_return_value_different_args():
     return_value = task_9_2.generate_trunk_config(
         trunk_vlans_mapping, template_trunk_mode
     )
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value != None, "The function returns None"
     assert (
         type(return_value) == list
-    ), f"По заданию функция должна возвращать список, а возвращает {type(return_value).__name__}"
+    ), f"The function should return a list, instead it returns a {type(return_value).__name__}"
     assert (
         return_value == correct_return_value
-    ), "Функция возвращает неправильное значение"
+    ), "Function returns wrong value"

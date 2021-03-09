@@ -7,11 +7,11 @@ sys.path.append("..")
 
 from pyneng_common_functions import check_function_exists, ping, get_reach_unreach
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def unified_columns_output(output):
@@ -22,14 +22,14 @@ def unified_columns_output(output):
 
 def test_function_created():
     """
-    Проверка, что функция создана
+    Checking that the function has been created
     """
     check_function_exists(task_12_3, "print_ip_table")
 
 
 def test_function_stdout(capsys):
     """
-    Проверка работы задания
+    Task check
     """
     reach_ip = ["10.10.1.7", "10.10.1.8", "10.10.1.9", "10.10.1.15"]
     unreach_ip = ["10.10.2.1", "10.10.1.2"]
@@ -44,7 +44,7 @@ def test_function_stdout(capsys):
         "10.10.1.9\n"
         "10.10.1.15\n"
     )
-    assert return_value == None, "Функция должна возвращать None"
+    assert return_value == None, "The function must return None"
     assert (
         unified_columns_output(stdout) == correct_stdout
-    ), "Функция возвращает неправильное значение"
+    ), "Function returns wrong value"

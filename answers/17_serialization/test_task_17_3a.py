@@ -12,16 +12,16 @@ from pyneng_common_functions import (
     get_func_params_default_value,
 )
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_function_created():
     """
-    Проверка, что функция создана
+    Checking that the function has been created
     """
     check_function_exists(task_17_3a, "generate_topology_from_cdp")
 
@@ -37,12 +37,12 @@ def test_function_params():
     )
     assert (
         default_values.get("save_to_filename") == None
-    ), "У параметра save_to_filename значение по умолчанию должно быть None"
+    ), "The save_to_filename parameter should have a default value of None"
 
 
 def test_function_return_value():
     """
-    Проверка работы функции
+    Function check
     """
     list_of_cdp_files = [
         "sh_cdp_n_r2.txt",
@@ -73,13 +73,13 @@ def test_function_return_value():
     }
 
     return_value = task_17_3a.generate_topology_from_cdp(list_of_cdp_files)
-    assert return_value != None, "Функция ничего не возвращает"
+    assert return_value != None, "The function returns None"
     assert (
         type(return_value) == dict
-    ), f"По заданию функция должна возвращать словарь, а возвращает {type(return_value).__name__}"
+    ), f"The function should return a dict, instead it returns a {type(return_value).__name__}"
     assert (
         return_value == correct_return_value
-    ), "Функция возвращает неправильное значение"
+    ), "Function returns wrong value"
 
 
 def test_writing_to_yaml_file(tmpdir):
@@ -114,9 +114,9 @@ def test_writing_to_yaml_file(tmpdir):
     return_value = task_17_3a.generate_topology_from_cdp(
         list_of_cdp_files, save_to_filename=dest_filename
     )
-    assert os.path.exists(dest_filename), "YAML файл не создан"
+    assert os.path.exists(dest_filename), "YAML file not created"
     with open(dest_filename) as f:
         yaml_file_content = yaml.safe_load(f)
     assert (
         yaml_file_content == correct_return_value
-    ), "Топология не записана в YAML файл"
+    ), "Topology is not written to YAML file"

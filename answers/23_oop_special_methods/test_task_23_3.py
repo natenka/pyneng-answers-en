@@ -6,11 +6,11 @@ sys.path.append("..")
 
 from pyneng_common_functions import check_class_exists, check_attr_or_method
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_class_created():
@@ -18,19 +18,18 @@ def test_class_created():
 
 
 def test_attr_topology(topology_with_dupl_links):
-    """Проверяем, что в объекте Topology есть атрибут topology"""
+    """Checking that the Topology object has a topology attribute"""
     top_with_data = task_23_3.Topology(topology_with_dupl_links)
     check_attr_or_method(top_with_data, attr="topology")
 
 
 def test_topology_normalization(topology_with_dupl_links, normalized_topology_example):
-    """Проверка удаления дублей в топологии"""
+    """Checking the removal of duplicates in a topology"""
     top_with_data = task_23_3.Topology(topology_with_dupl_links)
     assert len(top_with_data.topology) == len(normalized_topology_example)
 
 
 def test_method__add__(normalized_topology_example):
-    """Проверка наличия метода __add__ и его работы"""
     top1 = task_23_3.Topology(normalized_topology_example)
     top1_size_before_add = len(top1.topology)
     top2 = task_23_3.Topology(
@@ -42,11 +41,11 @@ def test_method__add__(normalized_topology_example):
     top3 = top1 + top2
     assert isinstance(
         top3, task_23_3.Topology
-    ), "Метод __add__ должен возвращать новый экземпляр класса Topology"
+    ), "The __add__ method should return a new instance of the Topology class"
     assert len(top3.topology) == 8
     assert (
         len(top1.topology) == top1_size_before_add
-    ), "После сложения изменился размер первой топологии. Метод __add__ не должен менять исходные топологии"
+    ), "After the addition, the size of the first topology changed. The __add__ method should not change the original topologies"
     assert (
         len(top2.topology) == top2_size_before_add
-    ), "После сложения изменился размер второй топологии. Метод __add__ не должен менять исходные топологии"
+    ), "After the addition, the size of the second topology changed. The __add__ method should not change the original topologies"

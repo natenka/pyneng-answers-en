@@ -3,26 +3,23 @@ import task_21_1
 import os
 
 
-# Проверка что тест вызван через pytest ..., а не python ...
+# Checking that the test is called via pytest ... and not python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
 
 if not isinstance(__loader__, AssertionRewritingHook):
-    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+    print(f"Tests should be called using this expression:\npytest {__file__}\n\n")
 
 
 def test_templates_exists():
     """
-    Проверка, что функция создана
+    Checking that the function has been created
     """
     assert os.path.exists(
         "templates/sh_ip_dhcp_snooping.template"
-    ), "Шаблон templates/sh_ip_dhcp_snooping.template не существует"
+    ), "Template templates/sh_ip_dhcp_snooping.template does not exist"
 
 
 def test_template():
-    """
-    Проверка работы шаблона
-    """
     correct_return_value = [
         ["mac", "ip", "vlan", "intf"],
         ["00:09:BB:3D:D6:58", "10.1.10.2", "10", "FastEthernet0/1"],
@@ -37,4 +34,4 @@ def test_template():
 
     assert (
         return_value == correct_return_value
-    ), "Шаблон templates/sh_ip_dhcp_snooping.template неправильно парсит данные"
+    ), "Template templates/sh_ip_dhcp_snooping.template does not parse data correctly"
