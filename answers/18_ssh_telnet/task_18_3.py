@@ -43,14 +43,9 @@ Out[14]: '*17:06:12.278 UTC Wed Mar 13 2019'
 
 In [15]: commands = ['username user5 password pass5', 'username user6 password pass6']
 
-In [16]: send_commands(r1, config=commands)
-Out[16]: 'config term
-Enter configuration commands, one per line.  End with CNTL/Z.
-R1(config)#username user5 password pass5
-R1(config)#username user6 password pass6
-R1(config)#end
-R1#'
 
+In [16]: send_commands(r1, config=commands)
+Out[16]: 'config term\nEnter configuration commands, one per line.  End with CNTL/Z.\nR1(config)#username user5 password pass5\nR1(config)#username user6 password pass6\nR1(config)#end\nR1#'
 """
 import yaml
 from task_18_1 import send_show_command
@@ -63,7 +58,7 @@ command = "sh ip int br"
 
 def send_commands(device, *, config=None, show=None):
     if show and config:
-        raise ValueError("Можно передавать только один из аргументов show/config")
+        raise ValueError("Only one of the show/config arguments can be passed")
     elif show:
         return send_show_command(device, show)
     elif config:

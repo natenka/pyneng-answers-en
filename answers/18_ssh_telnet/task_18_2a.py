@@ -32,7 +32,7 @@ commands = ["logging 10.255.255.1", "logging buffered 20010", "no logging consol
 
 def send_config_commands(device, config_commands, log=True):
     if log:
-        print(f"Подключаюсь к {device['host']}...")
+        print(f"Connecting to {device['host']}...")
     with ConnectHandler(**device) as ssh:
         ssh.enable()
         result = ssh.send_config_set(config_commands)

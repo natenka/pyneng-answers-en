@@ -45,52 +45,31 @@ The "logging" command was executed with the error "Incomplete command." on the d
 The "a" command was executed with the error "Ambiguous command:  "a"" on the device 192.168.100.1
 
 In [18]: pprint(result, width=120)
-({'ip http server': 'config term
-'
-                    'Enter configuration commands, one per line.  End with CNTL/Z.
-'
-                    'R1(config)#ip http server
-'
+({'ip http server': 'config term\n'
+                    'Enter configuration commands, one per line.  End with CNTL/Z.\n'
+                    'R1(config)#ip http server\n'
                     'R1(config)#',
-  'logging buffered 20010': 'config term
-'
-                            'Enter configuration commands, one per line.  End with CNTL/Z.
-'
-                            'R1(config)#logging buffered 20010
-'
+  'logging buffered 20010': 'config term\n'
+                            'Enter configuration commands, one per line.  End with CNTL/Z.\n'
+                            'R1(config)#logging buffered 20010\n'
                             'R1(config)#'},
- {'a': 'config term
-'
-       'Enter configuration commands, one per line.  End with CNTL/Z.
-'
-       'R1(config)#a
-'
-       '% Ambiguous command:  "a"
-'
+ {'a': 'config term\n'
+       'Enter configuration commands, one per line.  End with CNTL/Z.\n'
+       'R1(config)#a\n'
+       '% Ambiguous command:  "a"\n'
        'R1(config)#',
-  'logging': 'config term
-'
-             'Enter configuration commands, one per line.  End with CNTL/Z.
-'
-             'R1(config)#logging
-'
-             '% Incomplete command.
-'
-             '
-'
+  'logging': 'config term\n'
+             'Enter configuration commands, one per line.  End with CNTL/Z.\n'
+             'R1(config)#logging\n'
+             '% Incomplete command.\n'
+             '\n'
              'R1(config)#',
-  'logging 0255.255.1': 'config term
-'
-                        'Enter configuration commands, one per line.  End with CNTL/Z.
-'
-                        'R1(config)#logging 0255.255.1
-'
-                        '                   ^
-'
-                        "% Invalid input detected at '^' marker.
-"
-                        '
-'
+  'logging 0255.255.1': 'config term\n'
+                        'Enter configuration commands, one per line.  End with CNTL/Z.\n'
+                        'R1(config)#logging 0255.255.1\n'
+                        '                   ^\n'
+                        "% Invalid input detected at '^' marker.\n"
+                        '\n'
                         'R1(config)#'})
 
 In [19]: good, bad = result
@@ -117,7 +96,6 @@ import re
 from netmiko import ConnectHandler
 import yaml
 
-# списки команд с ошибками и без:
 commands_with_errors = ["logging 0255.255.1", "logging", "i"]
 correct_commands = ["logging buffered 20010", "ip http server"]
 commands = commands_with_errors + correct_commands
@@ -126,11 +104,11 @@ commands = commands_with_errors + correct_commands
 def send_config_commands(device, config_commands, log=True):
     good_commands = {}
     bad_commands = {}
-    error_message = 'Команда "{}" выполнилась с ошибкой "{}" на устройстве {}'
+    error_message = 'The "{}" command was executed with the error "{}" on the device {}'
     regex = "% (?P<errmsg>.+)"
 
     if log:
-        print("Подключаюсь к {}...".format(device["host"]))
+        print("Connecting to {}...".format(device["host"]))
     with ConnectHandler(**device) as ssh:
         ssh.enable()
         for command in config_commands:
