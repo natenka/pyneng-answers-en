@@ -131,7 +131,7 @@ def send_cfg_commands(device, commands):
 
 def send_commands_to_devices(devices, filename, *, show=None, config=None, limit=3):
     if show and config:
-        raise ValueError("Можно передавать только один из аргументов show/config")
+        raise ValueError("Only one of the show/config arguments can be passed")
     command = show if show else config
     function = send_show_command if show else send_cfg_commands
 
