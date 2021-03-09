@@ -93,6 +93,6 @@ class Topology:
         copy_topology.update(other.topology)
         return Topology(copy_topology)
 
-    # второй вариант решения
+    # second version
     def __add__(self, other):
         return Topology({**self.topology, **other.topology})
