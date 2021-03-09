@@ -1,30 +1,28 @@
 # -*- coding: utf-8 -*-
 """
-Задание 9.1a
+Task 9.1a
 
-Сделать копию функции generate_access_config из задания 9.1.
+Make a copy of the code from the task 9.1.
 
-Дополнить скрипт: ввести дополнительный параметр, который контролирует будет ли
-настроен port-security
- * имя параметра 'psecurity'
- * значение по умолчанию None
- * для настройки port-security, как значение надо передать список команд
-   port-security (находятся в списке port_security_template)
+Add this functionality: add an additional parameter that controls whether
+port-security configured
+  * parameter name 'psecurity'
+  * default is None
+  * to configure port-security, a list of commands must be passed as a value
+    port-security (port_security_template list)
 
-Функция должна возвращать список всех портов в режиме access с конфигурацией
-на основе шаблона access_mode_template и шаблона port_security_template,
-если он был передан.
-В конце строк в списке не должно быть символа перевода строки.
+The function should return a list of all ports in access mode with configuration
+based on the access_mode_template template and the port_security_template template,
+if passed. There should not be a new line character at the end of lines in the list.
 
+Check the operation of the function using the example of the access_config
+dictionary, with the generation of the configuration port-security and without.
 
-Проверить работу функции на примере словаря access_config, с генерацией конфигурации
-port-security и без.
-
-Пример вызова функции:
+An example of a function call:
 print(generate_access_config(access_config, access_mode_template))
 print(generate_access_config(access_config, access_mode_template, port_security_template))
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
+Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
 

@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-Задание 5.2a
+Task 5.2a
 
-Всё, как в задании 5.2, но, если пользователь ввел адрес хоста, а не адрес сети,
-надо преобразовать адрес хоста в адрес сети и вывести адрес сети и маску,
-как в задании 5.2.
+Copy and modify the script from task 5.2 so that, if the user entered a host address
+rather than a network address, convert the host address to a network address
+and print the network address and mask, as in task 5.2.
 
-Пример адреса сети (все биты хостовой части равны нулю):
+An example of a network address (all host bits are equal to zero):
 * 10.0.1.0/24
 * 190.1.0.0/16
 
-Пример адреса хоста:
-* 10.0.1.1/24 - хост из сети 10.0.1.0/24
-* 10.0.5.195/28 - хост из сети 10.0.5.192/28
+Host address example:
+* 10.0.1.1/24 - host from network 10.0.1.0/24
+* 10.0.5.195/28 - host from network 10.0.5.192/28
 
-Если пользователь ввел адрес 10.0.1.1/24, вывод должен быть таким:
+If the user entered the address 10.0.1.1/24, the output should look like this:
 
 Network:
 10        0         1         0
@@ -25,20 +25,20 @@ Mask:
 255       255       255       0
 11111111  11111111  11111111  00000000
 
-Проверить работу скрипта на разных комбинациях хост/маска, например:
+Check the script work on different host/mask combinations, for example:
     10.0.5.195/28, 10.0.1.1/24
 
-Подсказка:
-Есть адрес хоста в двоичном формате и маска сети 28. Адрес сети это первые 28 бит
-адреса хоста + 4 ноля.
-То есть, например, адрес хоста 10.1.1.195/28 в двоичном формате будет
+Hint:
+The network address can be calculated from the binary host address and the netmask.
+If the mask is 28, then the network address is the first 28 bits host addresses + 4 zeros.
+For example, the host address 10.1.1.195/28 in binary will be:
 bin_ip = "00001010000000010000000111000011"
 
-А адрес сети будет первых 28 символов из bin_ip + 0000 (4 потому что всего
-в адресе может быть 32 бита, а 32 - 28 = 4)
+Then the network address will be the first 28 characters from bin_ip + 0000
+(4 because in total there can be 32 bits in the address, and 32 - 28 = 4)
 00001010000000010000000111000000
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
+Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
 

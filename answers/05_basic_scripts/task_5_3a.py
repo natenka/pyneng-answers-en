@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Задание 5.3a
+Task 5.3a
 
-Дополнить скрипт из задания 5.3 таким образом, чтобы, в зависимости
-от выбранного режима, задавались разные вопросы в запросе о номере
-VLANа или списка VLANов:
-* для access: 'Введите номер VLAN:'
-* для trunk: 'Введите разрешенные VLANы:'
+Copy and change the script from task 5.3 in such a way that, depending on
+the selected mode, different questions were asked in the request for the VLAN number
+or VLAN list:
+* for access: 'Enter VLAN number:'
+* for trunk: 'Enter the allowed VLANs:'
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
-То есть эту задачу можно решить без использования условия if и циклов for/while.
+Restriction: All tasks must be done using the topics covered in this and previous chapters.
+This task can be solved without using the if condition and for/while loops.
 """
 
 access_template = [

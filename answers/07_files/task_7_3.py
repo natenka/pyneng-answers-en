@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Задание 7.3
+Task 7.3
 
-Скрипт должен обрабатывать записи в файле CAM_table.txt. Каждая строка,
-где есть MAC-адрес, должна быть обработана таким образом, чтобы
-на стандартный поток вывода была выведена таблица вида:
+The script should process the lines in the CAM_table.txt file. Each line,
+where there is a MAC address, must be handled in such a way that
+the following table was printed on the stdout:
 
 100      01bb.c580.7000      Gi0/1
 200      0a4b.c380.7c00      Gi0/2
@@ -17,7 +17,7 @@
 1000     0a4b.c380.7d00      Gi0/9
 
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
+Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
 

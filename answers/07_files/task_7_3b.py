@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-Задание 7.3b
+Task 7.3b
 
-Сделать копию скрипта задания 7.3a.
+Make a copy of the code from the task 7.3a.
 
-Переделать скрипт:
-- Запросить у пользователя ввод номера VLAN.
-- Выводить информацию только по указанному VLAN.
+Add this functionality:
+- Ask the user to enter the VLAN number.
+- Print information only for the specified VLAN.
 
-Пример работы скрипта:
+Output example:
 
 Enter VLAN number: 10
 10       0a1b.1c80.7000      Gi0/4
 10       01ab.c5d0.70d0      Gi0/8
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
+Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
 user_vlan = input("Enter VLAN number: ")

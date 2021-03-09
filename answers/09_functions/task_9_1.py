@@ -1,28 +1,26 @@
 # -*- coding: utf-8 -*-
 """
-Задание 9.1
+Task 9.1
 
-Создать функцию generate_access_config, которая генерирует конфигурацию
-для access-портов.
+Create generate_access_config function that generates configuration
+for access ports.
 
-Функция ожидает такие аргументы:
+The function expects arguments:
 
-- словарь с соответствием интерфейс-VLAN такого вида:
-    {'FastEthernet0/12': 10,
-     'FastEthernet0/14': 11,
-     'FastEthernet0/16': 17}
-- шаблон конфигурации access-портов в виде списка команд (список access_mode_template)
+- a dictionary with interface as a key and VLAN as a value:
+     {'FastEthernet0/12': 10,
+      'FastEthernet0/14': 11,
+      'FastEthernet0/16': 17}
+- access ports configuration template as a list of commands (access_mode_template list)
 
-Функция должна возвращать список всех портов в режиме access с конфигурацией
-на основе шаблона access_mode_template. В конце строк в списке не должно быть
-символа перевода строки.
+The function should return a list of all ports in access mode with configuration
+based on the access_mode_template template.
 
-В этом задании заготовка для функции уже сделана и надо только продолжить писать
-само тело функции.
+In this task, the beginning of the function is written and you just need to
+continue writing the function body itself.
 
 
-Пример итогового списка (перевод строки после каждого элемента сделан
-для удобства чтения):
+An example of a final list (each string is written on a new line for readability):
 [
 'interface FastEthernet0/12',
 'switchport mode access',
@@ -38,13 +36,13 @@
 'spanning-tree bpduguard enable',
 ...]
 
-Проверить работу функции на примере словаря access_config
-и списка команд access_mode_template.
-Если предыдущая проверка прошла успешно, проверить работу функции еще раз на словаре
-access_config_2 и убедиться, что в итоговом списке правильные номера интерфейсов
-и вланов.
+Check the operation of the function using the access_config dictionary
+and the list of commands access_mode_template.
+If the previous check was successful, check the function again using the dictionary
+access_config_2 and make sure that the final list contains the correct interface
+numbers and vlans.
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
+Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
 

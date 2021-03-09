@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 """
-Задание 9.4
+Task 9.4
 
-Создать функцию convert_config_to_dict, которая обрабатывает конфигурационный
-файл коммутатора и возвращает словарь:
-* Все команды верхнего уровня (глобального режима конфигурации), будут ключами.
-* Если у команды верхнего уровня есть подкоманды, они должны быть в значении
-  у соответствующего ключа, в виде списка (пробелы в начале строки надо удалить).
-* Если у команды верхнего уровня нет подкоманд, то значение будет пустым списком
+Create a convert_config_to_dict function that handles the switch configuration
+file and returns a dictionary:
+* All top-level commands (global configuration mode) will be keys.
+* If the top-level team has subcommands, they must be in the value
+  from the corresponding key, in the form of a list (spaces at the beginning of the line must be removed).
+* If the top-level command has no subcommands, then the value will be an empty list
 
-У функции должен быть один параметр config_filename, который ожидает
-как аргумент имя конфигурационного файла.
+The function must have one parameter, config_filename, which expects as an argument
+the name of the configuration file.
 
-Проверить работу функции на примере файла config_sw1.txt
+Check the operation of the function using the config_sw1.txt file.
 
-При обработке конфигурационного файла, надо игнорировать строки, которые начинаются
-с '!', а также строки в которых содержатся слова из списка ignore.
+When processing the configuration file, you should ignore the lines that begin
+with '!', as well as lines containing words from the ignore list.
 
-Для проверки надо ли игнорировать строку, использовать функцию ignore_command.
+To check if a line should be ignored, use the ignore_command function.
 
-Часть словаря, который должна возвращать функция (полный вывод можно посмотреть
-в тесте test_task_9_4.py):
+The part of the dictionary that the function should return (the full output can be seen
+in test_task_9_4.py test):
 {
     "version 15.0": [],
     "service timestamps debug datetime msec": [],
@@ -42,7 +42,7 @@
     ],
 }
 
-Ограничение: Все задания надо выполнять используя только пройденные темы.
+Restriction: All tasks must be done using the topics covered in this and previous chapters.
 """
 
 ignore = ["duplex", "alias", "configuration"]
